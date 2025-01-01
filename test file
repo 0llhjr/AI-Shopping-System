@@ -1,0 +1,84 @@
+
+products = [
+    {"id": 1, "name": "Laptop", "category": "Electronics", "price": 500},
+    {"id": 2, "name": "Headphones", "category": "Electronics", "price": 50},
+    {"id": 3, "name": "Smartphone", "category": "Electronics", "price": 300},
+    {"id": 4, "name": "T-Shirt", "category": "Clothing", "price": 20},
+    {"id": 5, "name": "Jeans", "category": "Clothing", "price": 40},
+]
+
+# User preferences for recommendations
+user_preferences = {"category": "Electronics"}
+
+# Shopping cart
+shopping_cart = []
+
+# Function to recommend products based on user preferences
+def recommend_products(preferences):
+    recommendations = [p for p in products if p["category"] == preferences["category"]]
+    return recommendations
+
+# Function to add a product to the cart
+def add_to_cart(product_id):
+    for product in products:
+        if product["id"] == product_id:
+            shopping_cart.append(product)
+            print(f"{product['name']} added to the cart.")
+            return
+    print("Product not found.")
+
+# Function to view the shopping cart
+def view_cart():
+    if not shopping_cart:
+        print("The shopping cart is empty.")
+        return
+    print("\nShopping Cart:")
+    total_price = 0
+    for item in shopping_cart:
+        print(f"- {item['name']} (${item['price']})")
+        total_price += item["price"]
+    print(f"Total Price: ${total_price}")
+
+# Function to checkout
+def checkout():
+    if not shopping_cart:
+        print("The cart is empty. Add items to checkout.")
+        return
+    print("\nCheckout Complete! Thank you for shopping.")
+    shopping_cart.clear()
+
+# Main program
+def main():
+    print("Welcome to the AI Shopping System!")
+    
+    while True:
+        print("\nMenu:")
+        print("1. View Recommended Products")
+        print("2. Add Product to Cart")
+        print("3. View Cart")
+        print("4. Checkout")
+        print("5. Exit")
+        
+        choice = input("Enter your choice: ")
+        
+        if choice == "1":
+            print("\nRecommended Products:")
+            recommendations = recommend_products(user_preferences)
+            for product in recommendations:
+                print(f"- {product['name']} (${product['price']})")
+        elif choice == "2":
+            product_id = int(input("Enter the product ID to add to the cart: "))
+            add_to_cart(product_id)
+        elif choice == "3":
+            view_cart()
+        elif choice == "4":
+            checkout()
+        elif choice == "5":
+            print("Thank you for using the AI Shopping System!")
+            break
+        else:
+            print("Invalid choice. Please try again.")
+
+# Run the program
+if __name__ == "__main__":
+    main()
