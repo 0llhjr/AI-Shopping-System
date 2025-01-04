@@ -1,4 +1,4 @@
-
+##this is AI Online shopping system 
 products = [
     {"id": 1, "name": "Laptop", "category": "Electronics", "price": 500},
     {"id": 2, "name": "Headphones", "category": "Electronics", "price": 50},
